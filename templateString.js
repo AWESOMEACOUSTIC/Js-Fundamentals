@@ -301,3 +301,170 @@ const res = words.filter((words) => {
 })
 console.log(res); // output: [ 'optimistic', 'dragonwarrior', 'swordfish', 'icanflynow' ]
 
+// The find method is another built-in array in js 
+// that allows you to find the first element in an arra that
+// matches a specified condition.
+// it returns the value of athe first elemnet that satisfies
+// the gvien testing unction, or undefined if no element is found.
+
+const members = [
+    {name: "Aditya", age: 22},
+    {name: "Prasanna", age: 23},
+    {name: "Siddharth", age: 24},
+    {name: "Shivam", age: 25}
+]
+
+const found = memebers.find((members) => {
+    return (
+        members.name === "Aditya" && members.age === 22
+    )
+})
+console.log(found); // output: { name: 'Aditya', age: 22 }
+
+let products = [
+    {name: "Laptop", price: 1000},
+    {name: "Phone", price: 500},
+    {name: "Tablet", price: 300},
+    {name: "Monitor", price: 200}
+]
+
+const desiredProduct = products.find((products) => {
+    return (
+        products.name === "Monitor" && products.price === 200
+    )
+});
+console.log(desiredProduct); // output: { name: 'Monitor', price: 200 }
+
+/*
+The every() method test whether all elemnets in the array pass
+the condition specified by the provided callback fucntion. It 
+returns true if the callback functruon returns true for 
+every element, and false if any element fails the condition.
+*/
+
+const mem = [
+    "huxn",
+    "jordan",
+    "aesh",
+    "akkiyan"
+]
+console.log(mem.every(mem => mem.length === 4)); // output: false
+console.log(mem.every(mem => mem.length > 3)) // output: true
+
+
+/*
+The some() method tests whether at least one element in the 
+array passes the condition specified by the provided callback
+fucntion. It returns true if the callback fucntion returns true
+for at least one element, and false if no element passes the condition.
+*/
+
+console.log(mem.some(mem => mem.length === 4)); // output: true
+console.log(mem.some(mem => mem.length === 3)); // output: false
+
+/*
+The reduce() method applies the reducer function to each element
+of an array accumulating the results into a single value. It is oftern used to perform
+calculations or aggregations on array elements and simplify the array into a single value)
+*/
+
+console.log(["one, two, three"].reduce((accumulator, currentValue) => {
+    return accumulator + currentValue;
+})) // output: one, two, three
+
+/*
+Because you passed in a one-element array (["one, two, three"]) 
+and didn’t supply an initial value, reduce uses that single
+element as the accumulator and never invokes the callback. 
+The result is just the original string. 
+*/
+
+console.log(["one", "two" , "three"].reduce((accumulator, currentValue) =>{
+    return accumulator + currentValue;
+}))
+// output: onetwothree
+
+const gro = [
+    {name : "Tiffiny", age: 28},
+    {name : "sushi", age: 24},
+    {name : "Divyanshi", age: 19},
+    {name : "Shivam", age: 32},
+    {name : "Mehek", age: 52}
+]
+const oldest = gro.reduce((prev,current) =>{
+    return (
+        prev.age > current.age ? prev.age : current.age
+    )
+},0);
+console.log(oldest); // output: 52
+
+const items = [
+    {name: "PS5", price: 500},
+    {name: "Xbox", price: 400},
+    {name: "Switch", price: 300},
+    {name: "PC", price: 1000},
+    {name: "Laptop", price: 800}
+]
+const total = items.reduce((acc,curr) => {
+    return acc + curr.price;
+},0);
+console.log(total); // output: 3000
+
+// --> Map
+const map = new Map();
+
+map.set("identity", "Aditya");
+map.set("age", 22);
+map.set("work", "SDE-Intern");
+map.set("location", "Bangalore");
+map.set("hobby", [{
+    event : "Gaming",
+    time : "Night",
+    place : "Home"},
+    {
+        event : "Coding",
+        time : "Day",
+        place : "Office"
+    }
+]);
+console.log(map); 
+// output: Map(5) { 'identity' => 'Aditya', 'age' => 22, 'work' => 'SDE-Intern', 'location' => 'Bangalore', 'hobby' => [ [Object], [Object] ] }
+console.log(map.get("hobby"));
+// output: [ { event: 'Gaming', time: 'Night', place: 'Home' }, { event: 'Coding', time: 'Day', place: 'Office' } ]
+console.log(map.values());
+// output: [Map Iterator] {
+//   'Aditya',
+//   22,
+//   'SDE-Intern',
+//   'Bangalore',
+//   [ [Object], [Object] ]
+// }
+
+const entry = [...map.entries()];
+const objectEntries =  entry.filter(([key,value]) => {
+    return (
+        value != null && typeof value === "object" 
+    )
+})
+console.log(objectEntries); 
+// output: [ [ 'hobby', [ [Object], [Object] ] ] ]
+for (const [key, value] of objectEntries){
+    console.log(`Key: ${key}, Value: ${value}`);
+}
+// output: Key: hobby, Value: [ { event: 'Gaming', time: 'Night', place: 'Home' }, { event: 'Coding', time: 'Day', place: 'Office' } ]
+
+
+/*
+Symbol is a unique and inmmutable primitive data type 
+introduced in ES6. A symbol is often used as an identifier
+for object properties to avoid potential naming conflicts.
+
+unlike strings or numbers, symbols are guranteed to be unique.
+When you create a symbol, it is unique and cannot be recreated
+or changed. This uniqueness ensures that symbols will
+not collide with other property names, even if they have the same string representation
+*/
+const sym1 = Symbol('description');
+const sym2 = Symbol('description');
+console.log(sym1 === sym2); // false
+
