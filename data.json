@@ -1,0 +1,9 @@
+{
+    "name" : "Mehak",
+    "age" : 20,
+    "email" : "mehak@mail.com",
+    "address" : {
+        "city" : "Whitefield",
+        "state" : "Karnataka"
+    }
+}
