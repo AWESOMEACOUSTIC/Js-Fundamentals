@@ -114,3 +114,190 @@ the default value is used instead.
 This is useful for providing fallback values and avoiding
 undefined values in your code.
 */
+
+function countdown(value = false){
+    if(value === true){
+        for(let i = 0; i< 8; i++){
+            console.log(`countdown started : ${i}`);
+        }
+    }
+}
+
+countdown();
+
+// so let's say we have a fucntion call without any argument
+// we can assign a default value to the parameter
+
+//Destructuring
+// Destructuring is a convenient way of extracting values from arrays or objects
+// and assigning them to variables. 
+
+const food = ["Pizza", "Burger", "Pasta"];
+
+const [first, second, third] = food;
+console.log(first); // output: Pizza
+console.log(second); // output: Burger
+console.log(third); // output: Pasta
+
+// while destructuring an object, we can give any
+// name to the variable.
+const user = {
+    hey: "Aditya",
+    age: 22,
+    work: "Student"
+};
+const {hey, age, work} = user;
+console.log(hey); // output: Aditya
+console.log(age); // output: 22 
+console.log(work); // output: Student
+// we can also give a default value to the variable
+
+let {a, b, c, ...rest} = {a: 1, b: 2, c: 3, d: 4, e: 5};
+console.log(rest); // output: { d: 4, e: 5 }
+
+// function destructuring
+function user({name, age, work}){
+    console.log(`My name is ${name} and I am ${age} years old. I am a ${work}`);
+}
+
+// or
+function user(user4){
+    console.log(`My name is ${user4.name} and I am ${user4.age} years old. I am a ${user4.work}`);
+}
+
+const user4 = {
+    name: "Aditya",
+    age: 22,
+    work: "Student"
+};
+user(user4); // output: My name is Aditya and I am 22 years old. I am a Student
+
+
+/*
+The for...in loop in JS is used to iterate over the enumerable 
+properties of an object. It is a way to loop through 
+the keys(property names) of an object.
+
+syntax : for(let key in object){...}
+
+*/
+
+/*
+In JavaScript, every property on an object has an internal attribute 
+called [[Enumerable]] (accessible via the enumerable flag in its property 
+descriptor). Enumerable properties are simply those 
+for which enumerable: true. When you do a for…in 
+(or call Object.keys()), only properties whose 
+descriptor has enumerable: true will show up.
+
+
+
+for object‐literal keys and assignments
+—they default to enumerable: true.
+
+for defineProperty, class-body methods, and most 
+built-ins—they default to enumerable: false unless 
+you explicitly make them enumerable
+
+*/
+
+let person ={
+    name : "Prasanna",
+    gender : "female",
+    age : 22,
+    work : "Student",
+}
+for(let key in person){
+    console.log(key); 
+}
+// output: name, gender, age, work (vertical)
+
+person.defineProperty("status", {
+    value: "single",
+    enumerable: false
+});
+
+for(let key in person){
+    console.log(key); 
+}
+// output: name, value, age, work (vertical)
+// The for...in loop will not iterate over the non-enumerable properties
+
+// for .. of loop
+// The for...of loop in JavaScript is used to iterate over iterable objects 
+// such as arrays, strings, maps, sets, and more.
+
+const text = " Heliyoo Ma bro";
+
+for(let char of text){
+    console.log(char); 
+}
+// output: H, e, l, i, y, o, o, M, a, b, r, o (vertical)
+
+// when we call for ..each loop helper we pass in 
+// a callback function that will be called for each element in the array
+
+let colors = ["red", "green", "blue"];
+colors.forEach((color, index) => {
+    console.log(`Color at index ${index} is ${color}`);
+    console.log("Modifying the color");
+    color = "yellow";
+    console.log(`Color at index ${index} is ${color}`);
+});
+// Color at index 0 is red
+// Color at index 1 is green
+// Color at index 2 is blue
+// Modifying the color
+// Color at index 0 is yellow
+
+
+// The map() method creates a new array 
+// populated with the results of calling a provided function 
+// on every element in the calling array.
+
+const numbers = [1, 2, 3, 4, 5];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // output: [2, 4, 6, 8, 10]
+
+// it returns a new array with the results of 
+// calling a provided function on every element in the calling array.
+
+// the for each does not return anything
+// it just executes the provided function once for each array element
+
+const dum = [8,9,2,34,4];
+const sr = dum.map(num => num * 10);
+console.log(sr); // output: [80, 90, 20, 340, 40]
+
+/*
+The filter() method is a built-in array method in JS that allows
+you to create a new array containign elements that pass a certain condition.
+it provides a clean and conscise way to filter out elements from an array based on a specified criteria.
+*/ 
+
+const songs = [
+    {title: "Sun Sathiya", duration: 3.5},
+    {title: "Bang Bang", duration: 4.0},
+    {title: "Bandish Bandits", duration: 2.5},
+    {title: "Drag Me Down", duration: 5.0}
+]
+
+console.log(songs.filter(songs => songs.duration >3.5));
+// output: [ { title: 'Bang Bang', duration: 4 }, { title: 'Drag Me Down', duration: 5 } ]
+
+const words = [
+    "spray",
+    "limit",
+    "elite",
+    "optimistic",
+    "dragonwarrior",
+    "sword",
+    "swordfish",
+    "icanflynow"
+]
+
+const res = words.filter((words) => {
+    return (words.length > 5);
+})
+console.log(res); // output: [ 'optimistic', 'dragonwarrior', 'swordfish', 'icanflynow' ]
+
