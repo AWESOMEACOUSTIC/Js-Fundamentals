@@ -102,3 +102,103 @@ const user2 = createPerson("Sachin","Tendulkar","Full Stack developer");
 console.log(user2);
 user2.fullName;
 
+/*
+Constructor function in javaScript are regular functions used
+with the new keyword to create and initialize objects with 
+shared properties and methods.
+*/
+
+// Syntax: function functionname with first letter in uppercase
+
+function CreatePeople(identity, last, pl){
+    this.identity = identity; // this will give output as window object
+    this.last = last;
+    this.pl = pl;
+    this.info = function(){
+        console.log(`Hey my name is ${this.identity} and i am interested in ${this.pl}`)
+    }
+}
+
+// so to avoid that we will use new keyword
+
+const john = new CreatePeople("John", "Doe", "Golang");
+console.log(john);
+john.info();
+/*
+New Keyword
+1. First create the empty object {}
+2. sets "this" to point to that object
+We can omit the return statement using new keyword
+*/ 
+
+function Book(title, author, year){
+    this.title = title;
+    this.author = author;
+    this.year = year;
+    this.getInfo = function(){
+        return `${this.title} by ${this.author} (${this.year})`
+    }
+}
+
+const book1 = new Book("The subtle art of not giving a Fuck", "Mark", 2020);
+console.log(book1);
+const storing = book1.getInfo();
+console.log(storing);
+
+function Car(make, model , year, color){
+    this.make = make;
+    this.model = model;
+    this.year = year;
+    this.color = color;
+    this.start = function(){
+        console.log(`The ${this.model} car is started`);
+    }
+    this.stop = function(){
+        console.log(`The ${this.model} car has stopped`);
+    }
+}
+    const car1 = new Car("India","Kia",2020,"Red");
+    const car2 = new Car("Japan", "Toyoto", 2018, "Yellow");
+    const car3 = new Car("Japan", "Supra", 2012, "Black");
+
+    car1.start();
+    car2.start();
+    car2.stop();
+    car3.start();
+    car1.stop();
+    car3.stop();
+
+
+// Built-in Constructors
+const num5 = new Number(10);
+const st1 = new String("huxn webdec");
+const bool1 = new Boolean(false);
+const arr = new Array(1,2,3);
+const num6 = 10;
+console.log(typeof num5) // object
+console.log(typeof num6) // number
+
+// The object.create() method creates a new object, using an
+// exisiting object as the prototype of the newly created object
+// Perfect for object chaining
+
+let person = {
+    greet : function(){
+        console.log(`Hello my name is ${this.neme} ${this.lastNeme}`)
+    }
+}
+
+const peer1 = Object.create(person);
+peer1.neme = "Aesh";
+peer1.lastNeme = "Accost"
+peer1.greet();
+
+/*
+employee ek base object hai — sab common cheezein isme hain
+rahul ek naya object hai jo employee se inherit karta hai
+rahul ke paas name aur role apne hain
+Par greet() method use karta hai prototype se (employee object)
+*/
+
+
+// Prototype
